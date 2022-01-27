@@ -1,4 +1,5 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
+import React from 'react';
 import appConfig from '../config.json';
 
 function GlobalStyle() {
@@ -60,7 +61,8 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-  const username = 'sarashb';
+  //const username = 'sarashb';
+  const [username, setUsername] = React.useState('sarashb')
 
   return (
     <>
@@ -69,7 +71,7 @@ export default function PaginaInicial() {
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           backgroundColor: appConfig.theme.colors.primary[500],
-          backgroundImage: 'url(https://images.wallpapersden.com/image/download/small-memory_am1pa2aUmZqaraWkpJRobWllrWdma2U.jpg)',
+          // backgroundImage: 'url(https://images.wallpapersden.com/image/download/small-memory_am1pa2aUmZqaraWkpJRobWllrWdma2U.jpg)',
           backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
@@ -101,7 +103,16 @@ export default function PaginaInicial() {
               {appConfig.name}
             </Text>
 
-            <TextField
+            <input 
+                type="text"
+                value={username}
+                onChange={function (event) {
+                  console.log('usuario digitou', event.target.value);
+                  const valor = event.target.value;
+                  setUsername(valor)
+                }}
+            />
+            {/* <TextField
               fullWidth
               textFieldColors={{
                 neutral: {
@@ -111,7 +122,7 @@ export default function PaginaInicial() {
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
               }}
-            />
+            /> */}
             <Button
               type='submit'
               label='Entrar'
